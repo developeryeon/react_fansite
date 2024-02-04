@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Form from './Form';
 import fakeData from '../common/Data/fakeData.json';
 import LetterCard from './LetterCard';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { LetterListContext } from '../Context/LetterContext';
+import { LetterCardContext } from '../Context/LetterContext';
 
 function LetterList() {
-	const [comment, setComment] = useState([]); // 상태 변수 comment를 선언하고 초기값은 빈 배열로 설정, setComment는 상태를 업데이트하는 함수
-	const [selectedMember, setSelectedMember] = useState('유재석'); // 상태 변수 selectedMember를 선언하고 초기값은 '유재석'으로 설정, setSelectedMember는 상태를 업데이트하는 함수
+	const [comment, setComment] = useState([]);
+	const [selectedMember, setSelectedMember] = useState('유재석');
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
@@ -37,17 +39,24 @@ function LetterList() {
 		setComment(data);
 	}, []);
 
+	const { fakeData } = useContext(LetterCardContext);
+
 	return (
 		<LetterListWrap>
-			<Form onSubmitHandler={onSubmitHandler} selectedMember={selectedMember} setSelectedMember={setSelectedMember} />
-
+			<LetterListContext.Provider value={{ onSubmitHandler, selectedMember, setSelectedMember }}>
+				<Form />
+			</LetterListContext.Provider>
 			<LetterListUL>
 				{comment.map((card) => (
 					<Link to={`detail/${card.id}`} key={card.id}>
-						<LetterCard id={card.id} nickname={card.nickname} createdAt={card.createdAt} writedTo={card.writedTo} content={card.content} />
+						{/* <LetterCard id={card.id} nickname={card.nickname} createdAt={card.createdAt} writedTo={card.writedTo} content={card.content} /> */}
+						<LetterCardContext.Provider value={{ id: card.id, nickname: card.nickname, createdAt: card.createdAt, writedTo: card.writedTo, content: card.content }}>
+							<LetterCard />
+						</LetterCardContext.Provider>
 					</Link>
 				))}
 			</LetterListUL>
+			{/* onSubmitHandler={onSubmitHandler} selectedMember={selectedMember} setSelectedMember={setSelectedMember}  */}
 		</LetterListWrap>
 	);
 }

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { LetterCardContext } from '../Context/LetterContext';
 
-export default function LetterCard({ createdAt, nickname, content, writedTo }) {
+export default function LetterCard() {
+	const { nickname, createdAt, writedTo, content } = useContext(LetterCardContext);
 	return (
 		<ListWrap>
 			<ListArticle>
