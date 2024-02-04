@@ -3,6 +3,8 @@ import Home from '../Pages/Home';
 import Detail from '../Pages/Detail';
 import EditDetail from '../Pages/EditDetail';
 
+// import Layout from '../Pages/Layout';
+
 const Router = () => {
 	return (
 		<BrowserRouter>
@@ -18,5 +20,3 @@ const Router = () => {
 };
 
 export default Router;
-
-//
