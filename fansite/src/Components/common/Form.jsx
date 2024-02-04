@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { LetterListContext } from '../Context/LetterContext';
 
-function Form({ onSubmitHandler }) {
+function Form() {
+	const { onSubmitHandler } = useContext(LetterListContext);
 	return (
 		<FormContainer onSubmit={onSubmitHandler}>
 			<FormInput>
