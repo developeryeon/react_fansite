@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function LetterList() {
-	const [comment, setComment] = useState([]); // 상태 변수 comment를 선언하고 초기값은 빈 배열로 설정, setComment는 상태를 업데이트하는 함수
-	const [selectedMember, setSelectedMember] = useState('유재석'); // 상태 변수 selectedMember를 선언하고 초기값은 '유재석'으로 설정, setSelectedMember는 상태를 업데이트하는 함수
+	const [comment, setComment] = useState([]);
+	const [selectedMember, setSelectedMember] = useState('유재석');
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
