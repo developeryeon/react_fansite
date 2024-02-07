@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function LetterCard({ createdAt, nickname, content, writedTo }) {
+export default function LetterCard({ letter }) {
 	return (
 		<ListWrap>
 			<ListArticle>
-				<h3>{nickname}</h3>
-				<p>{createdAt}</p>
-				<p>{writedTo}</p>
+				<h3>{letter.nickname}</h3>
+				<p>{letter.createdAt}</p>
+				<p>{letter.writedTo}</p>
 			</ListArticle>
 
-			<ListText>{content}</ListText>
+			<ListText>{letter.content}</ListText>
 		</ListWrap>
 	);
 }

@@ -5,31 +5,11 @@ import LetterCard from './LetterCard';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-function LetterList() {
+function LetterList({ activeMember }) {
 	const [comment, setComment] = useState([]);
-	const [selectedMember, setSelectedMember] = useState('유재석');
 
-	const onSubmitHandler = (e) => {
-		e.preventDefault();
-
-		const createdAt = new Date().toLocaleString();
-		const nickname = e.target.nickname.value;
-		const content = e.target.content.value;
-		const writedTo = e.target.writedTo.value;
-
-		if (!nickname || !content) {
-			return null;
-		}
-
-		const commentObj = { id: crypto.randomUUID(), createdAt, nickname, content, writedTo };
-
-		if (commentObj) {
-			setComment([commentObj, ...comment]);
-			localStorage.setItem('comments', JSON.stringify([commentObj, ...comment]));
-		}
-
-		e.target.reset();
-	};
+	const filteredLetters = fakeData.filter((letter) => letter.writedTo === activeMember);
+	console.log(filteredLetters);
 
 	useEffect(() => {
 		const data = JSON.parse(localStorage.getItem('comments')) || fakeData;
@@ -39,15 +19,16 @@ function LetterList() {
 
 	return (
 		<LetterListWrap>
-			<Form onSubmitHandler={onSubmitHandler} selectedMember={selectedMember} setSelectedMember={setSelectedMember} />
-
-			<LetterListUL>
+			{filteredLetters.map((letter) => (
+				<LetterCard letter={letter} />
+			))}
+			{/* <LetterListUL>
 				{comment.map((card) => (
 					<Link to={`detail/${card.id}`} key={card.id}>
 						<LetterCard id={card.id} nickname={card.nickname} createdAt={card.createdAt} writedTo={card.writedTo} content={card.content} />
 					</Link>
 				))}
-			</LetterListUL>
+			</LetterListUL> */}
 		</LetterListWrap>
 	);
 }
