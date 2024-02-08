@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function LetterCard({ letter }) {
+export default function LetterCard({ createdAt, nickname, content, writedTo }) {
 	return (
 		<ListWrap>
 			<ListArticle>
-				<h3>{letter.nickname}</h3>
-				<p>{letter.createdAt}</p>
-				<p>{letter.writedTo}</p>
+				<h3>{nickname}</h3>
+				<p>{createdAt}</p>
+				<p>{writedTo}</p>
 			</ListArticle>
 
-			<ListText>{letter.content}</ListText>
+			<ListText>{content}</ListText>
 		</ListWrap>
 	);
 }
@@ -46,5 +46,3 @@ const ListText = styled.div`
 	white-space: nowrap;
 	overflow: hidden;
 `;
-
-//

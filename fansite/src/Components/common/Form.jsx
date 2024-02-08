@@ -1,95 +1,88 @@
 import React from 'react';
 import styled from 'styled-components';
+// import MemberList from './MemberList';
 
-function Form() {
+function Form({ onSubmitHandler }) {
 	return (
-		<FormLayout>
-			<FormContainer>
-				<FormInputWrapper>
-					<label>닉네임</label>
-					<input type="text" placeholder="닉네임을 적어보세요" maxLength={10} name="nickname"></input>
-				</FormInputWrapper>
-				<FormInputWrapper>
-					<label>내용</label>
-					<textarea type="text" placeholder="최대 190자 이내로 적어주세요" maxLength={190} name="content"></textarea>
-				</FormInputWrapper>
-				<FormSelectWrapper>
-					<label>어떤 멤버에게 보낼까요?</label>
-					<select name="writedTo">
-						<option value={'유재석'}>유재석</option>
-						<option value={'하하'}>하하</option>
-						<option value={'주우재'}>주우재</option>
-						<option value={'이이경'}>이이경</option>
-						<option value={'박진주'}>박진주</option>
-						<option value={'이미주'}>이미주</option>
-					</select>
-				</FormSelectWrapper>
-				<BtnWrapper>
-					<FormSubmitBtn type="submit">등록하기</FormSubmitBtn>
-				</BtnWrapper>
-			</FormContainer>
-		</FormLayout>
+		<FormContainer onSubmit={onSubmitHandler}>
+			<FormInput>
+				<FormLabel>닉네임</FormLabel>
+				<UserID type="text" placeholder="닉네임을 적어보세요" maxLength={10} name="nickname"></UserID>
+			</FormInput>
+			<FormInput>
+				<FormLabel>내용</FormLabel>
+				<UserMsg type="text" placeholder="최대 190자 이내로 적어주세요" maxLength={190} name="content"></UserMsg>
+			</FormInput>
+			<FormInput>
+				<FormSelectClick>어떤 멤버에게 보낼까요?</FormSelectClick>
+				<FormSelectName name="writedTo">
+					<option value={'유재석'}>유재석</option>
+					<option value={'하하'}>하하</option>
+					<option value={'주우재'}>주우재</option>
+					<option value={'이이경'}>이이경</option>
+					<option value={'박진주'}>박진주</option>
+					<option value={'이미주'}>이미주</option>
+				</FormSelectName>
+			</FormInput>
+			<FormSubmitBtn type="submit">등록하기</FormSubmitBtn>
+		</FormContainer>
 	);
 }
 
 export default Form;
 
-const FormLayout = styled.section`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-`;
-
 const FormContainer = styled.form`
-	display: flex;
-	flex-direction: column;
 	background-color: palevioletred;
 	color: #fff;
 	width: 700px;
 	padding: 1.7rem;
-	font-family: 'BookkGothic-Bd';
-	font-size: 20px;
 	border-radius: 12px;
-	margin: 50px 0;
+	margin: 3.7rem;
 	box-shadow: 5px 8px 10px gray;
 `;
 
-const FormInputWrapper = styled.div`
+const FormInput = styled.section`
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	margin-bottom: 0.85rem;
-	& label {
-		width: 90px;
-	}
-	& input,
-	textarea {
-		width: 100%;
-		padding: 15px;
-		border-radius: 10px;
-	}
-	& textarea {
-		resize: none;
-		height: 100px;
-	}
 `;
 
-const FormSelectWrapper = styled(FormInputWrapper)`
-	justify-content: flex-start;
-	& label {
-		width: 220px;
-	}
-	& select {
-		width: 150px;
-		height: 30px;
-		margin-left: 20px;
-	}
-`;
-
-const BtnWrapper = styled.div`
+const FormLabel = styled.label`
+	width: 100px;
 	display: flex;
-	justify-content: flex-end;
 	align-items: center;
+	font-size: 22px;
+	font-family: 'BookkGothic-Bd';
+`;
+
+const UserID = styled.input`
+	width: 100%;
+	padding: 10px 12px;
+	border-radius: 10px;
+	border: none;
+	margin: 10px;
+`;
+
+const UserMsg = styled.textarea`
+	width: 100%;
+	height: 6.5rem;
+	border-radius: 10px;
+	border: none;
+	resize: none;
+	margin: 10px;
+`;
+
+const FormSelectClick = styled.label`
+	font-size: 22px;
+	font-family: 'BookkGothic-Bd';
+`;
+
+const FormSelectName = styled.select`
+	display: flex;
+	width: 240px;
+	margin-left: 50px;
+	height: 35px;
+	text-align: center;
+	border-radius: 5px;
 `;
 
 const FormSubmitBtn = styled.button`

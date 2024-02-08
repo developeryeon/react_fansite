@@ -1,21 +1,22 @@
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from '../Pages/Home';
 import Detail from '../Pages/Detail';
 import EditDetail from '../Pages/EditDetail';
-import fakeData from '../common/Data/fakeData.json';
-import { useState } from 'react';
 
-export default function Router() {
-	const [letters, setLetters] = useState(fakeData);
+// import Layout from '../Pages/Layout';
 
+const Router = () => {
 	return (
 		<BrowserRouter>
+			{/* <Layout> */}
 			<Routes>
-				<Route path="/" element={<Home letters={letters} setLetters={setLetters} />} />
-				<Route path="detail/:id" element={<Detail letters={letters} />} />
+				<Route path="/" element={<Home />} />
+				<Route path="detail/:id" element={<Detail />} />
 				<Route path="editdetail/:id" element={<EditDetail />} />
-				<Route path="*" element={<Navigate replace to="/" />} />
 			</Routes>
+			{/* </Layout> */}
 		</BrowserRouter>
 	);
-}
+};
+
+export default Router;
